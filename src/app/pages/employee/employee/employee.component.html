@@ -1,26 +1,92 @@
+<div class="container m-3">
 <div class="row">
     <div class="col-8">
+        <div class="card">
+            <div class="card-heading bg-secondary text-white">
+                Employee Details
+                <button class="btn addbtn btn-primary text-white text-end">Add </button>
+            </div>
+            <div class="card-body">
         <table class="table table-bordered">
             <thead>
+                <tr>
                 <th>Employee Name</th>
                 <th>Contact No</th>
                 <th>EmailId</th>
                 <th>Department</th>
                 <th>Role</th>
                 <th>Action</th>
+            </tr>
             </thead>
             <tbody>
             @for (emp of empList; track $index) {
                 <tr>
                     <td>{{emp.employeeName}}</td>
-                    <td>{{emp}}</td>
-                    <td>{{emp}}</td>
-                    <td>{{emp}}</td>
-                    <td>{{emp}}</td>
-                    <td></td>
+                    <td>{{emp.contactNo}}</td>
+                    <td>{{emp.emailId}}</td>
+                    <td>{{emp.deptName}}</td>
+                    <td>{{emp.role}}</td>
+                    <td>
+                        <i class="fa-solid fa-pen-to-square m-1 bg-primary text-white p-2" (click)="onEdit(emp)" ></i>
+                        <i class="fa-solid fa-trash bg-danger m-1 text-white p-2" (click)="onDelete(emp)"></i>
+                    </td>
                 </tr>
             }
         </tbody>
         </table>
     </div>
+    </div>
+</div>
+<div class="col-4">
+    <div class="card">
+        <div class="card-heading bg-secondary text-white">
+            Add Employee
+            <i class="fa-regular fa-circle-xmark m-1 rounded bg-danger text-white close"></i>
+        </div>
+        <div class="card-cody text-center">
+            <form #form="ngForm">
+            <div class="row">
+                <div class="col-12">
+                    <label for="">Employee Name</label><br>
+                    <input type="text" class="form-control" name="empnm" #empnm="ngModel" [(ngModel)]="empobj.employeeName">
+                </div>
+                <div class="col-12">
+                    <label for="">Contact No</label><br>
+                    <input type="text" class="form-control" name="contact" #contact="ngModel" [(ngModel)]="empobj.contactNo">
+                </div>
+                <div class="col-12">
+                    <label for="">Email ID</label><br>
+                    <input type="text" class="form-control" name="email" #email="ngModel" [(ngModel)]="empobj.emailId">
+                </div>
+                <div class="col-12">
+                    <label for="">Password</label><br>
+                    <input type="password" class="form-control" name="password" #password="ngModel" [(ngModel)]="empobj.password">
+                </div>
+                <div class="col-12">
+                    <label for="">Gender</label><br>
+                    <input type="text" class="form-control" name="gender" #gender="ngModel" [(ngModel)]="empobj.gender">
+                </div>
+                <div class="col-12">
+                    <label for="">Department</label><br>
+                    <select [(ngModel)]="empobj.deptId" class="form-control" name="dept" #dept="ngModel">
+                    <option value="0" selected>Select Department</option>
+                    @for (dept of deptList; track $index) {
+                        <option [value]="dept.deptId">{{dept.deptName}}</option>
+                    }
+                    </select>
+                </div>
+                <div class="col-12">
+                    <label for="" >Role</label><br>
+                    <input type="text" class="form-control" name="role" #role="ngModel" [(ngModel)]="empobj.role">
+                </div>
+            </div>
+        </form>
+        </div>
+        <div class="card-footer">
+            <button class="btn savebtn btn-success text-white m-3" (click)="onSave()">Save</button>
+            <button class="btn updatebtn btn-info text-white" (click)="onUpdate()">Update</button>
+        </div>
+    </div>
+</div>
+</div>
 </div>

@@ -8,6 +8,9 @@ export const APIConstant={
     CREATE_EMPLOYEE:"CreateEmployee",
     UPDATE_EMP:"UpdateEmployee",
     DELETE_EMP:"DeleteEmployee?id=",
+
+    // department url
+    GET_ALL_DEPARTMENT:"GetDepartments",
     
 
 }

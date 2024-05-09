@@ -8,5 +8,5 @@ export interface IEmployee{
   "gender": string;
   "role": string;
   "deptName":string;
-    
+
 }
