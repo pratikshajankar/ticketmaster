@@ -66,7 +66,8 @@
               "buildTarget": "TicketMaster:build:production"
             },
             "development": {
-              "buildTarget": "TicketMaster:build:development"
+              "buildTarget": "TicketMaster:build:development",
+              "port": 4203
             }
           },
           "defaultConfiguration": "development"

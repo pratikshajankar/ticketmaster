@@ -1,1 +1,26 @@
-<p>employee works!</p>
+<div class="row">
+    <div class="col-8">
+        <table class="table table-bordered">
+            <thead>
+                <th>Employee Name</th>
+                <th>Contact No</th>
+                <th>EmailId</th>
+                <th>Department</th>
+                <th>Role</th>
+                <th>Action</th>
+            </thead>
+            <tbody>
+            @for (emp of empList; track $index) {
+                <tr>
+                    <td>{{emp.employeeName}}</td>
+                    <td>{{emp}}</td>
+                    <td>{{emp}}</td>
+                    <td>{{emp}}</td>
+                    <td>{{emp}}</td>
+                    <td></td>
+                </tr>
+            }
+        </tbody>
+        </table>
+    </div>
+</div>
