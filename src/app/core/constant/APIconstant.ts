@@ -17,7 +17,16 @@ export const APIConstant={
     DELETE_DEPARTMENT:"DeleteDepartment?id=",
 
     // super admin dashboard
-    GET_SUPER_ADMIN_DASHBOARD:"GetSuperAdminDashboard"
+    GET_SUPER_ADMIN_DASHBOARD:"GetSuperAdminDashboard",
+
+    // admin employee dashboard
+    GET_ADMIN_EMPLOYEE_DASHBOARD:"getAdminEmployeeDashByEmpId?empId=",
+
+    // employee dashboard
+    GET_EMP_DASHBOARD_BY_EMPID:"getEmployeeDashByEmpId?empId=",
+
+    // department head dashboard
+    GET_DEPTHEAD_DASHBOARD_BY_DEPTHEAD:"GetDeptHeadDashboardByDeptHead?deptHeadEmpId=",
     
 
 }

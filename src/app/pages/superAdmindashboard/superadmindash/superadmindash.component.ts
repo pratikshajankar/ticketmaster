@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { SuperadmindashService } from '../../../core/services/superadmindash.service';
+import { SuperadmindashService } from '../../../core/services/SuperAdminDash/superadmindash.service';
 import { IAdmindash } from '../../../core/models/Interfaces/IAdmindash';
 
 @Component({
