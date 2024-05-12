@@ -16,7 +16,8 @@ export const APIConstant={
     UPDATE_DEPARTMENT:"UpdateDepartment",
     DELETE_DEPARTMENT:"DeleteDepartment?id=",
 
-    
+    // super admin dashboard
+    GET_SUPER_ADMIN_DASHBOARD:"GetSuperAdminDashboard"
     
 
 }
