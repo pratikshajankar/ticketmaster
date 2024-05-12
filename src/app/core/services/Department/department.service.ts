@@ -13,4 +13,16 @@ export class DepartmentService {
   getAllDepartment(){
     return this.http.get(APIConstant.API_URL+APIConstant.GET_ALL_DEPARTMENT);
   }
+
+  Createdept(obj:any){
+    return this.http.post(APIConstant.API_URL+APIConstant.CREATE_DEPARTMENT,obj);
+  }
+
+  updateDept(obj:any){
+    return this.http.put(APIConstant.API_URL+APIConstant.UPDATE_DEPARTMENT,obj)
+  }
+
+  deleteDept(id:any){
+    return this.http.delete(APIConstant.API_URL+APIConstant.DELETE_DEPARTMENT+id);
+  }
 }

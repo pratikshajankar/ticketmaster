@@ -1,0 +1,71 @@
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+    <div class="card">
+        <div class="card-heading text-center">
+            Department Info
+            <button class="btn addbtn btn-info">Add</button>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <td>Department Name</td>
+                        <td>Dept Head</td>
+                        <td>Create Date</td>
+                        <td>Action</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (dept of deptList; track $index) {
+                        <tr>
+                            <td>{{dept.deptName}}</td>
+                            <td>{{dept.deptHeadName}}</td>
+                            <td>{{dept.createdDate|date}}</td>
+                            <td>
+                                <i class="fa-solid fa-pen-to-square m-1 bg-primary text-white p-2"></i>
+                        <i class="fa-solid fa-trash bg-danger m-1 text-white p-2" (click)="onDelete(dept)"></i>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div> 
+</div> 
+<div class="col-4">
+   <div class="card">
+    <div class="card-heading">
+        Add Department
+        <i class="fa-regular fa-circle-xmark m-1 rounded bg-danger text-white close"></i>
+<div class="card-body">
+    <form #form="ngForm">
+<div class="row">
+    <div class="col-12">
+        <label>Department Name</label>
+        <input type="text" class="form-control" name="deptnm" #deptnm="ngModel" [(ngModel)]="deptobj.deptName">
+    </div>
+    <div class="col-12">
+        <label>Department Head</label><br>
+        <select [(ngModel)]="deptobj.deptHeadEmpId">
+        <option value="0" selected>Department Head Employee</option>
+        @for (depthead of deptheadempList; track $index) {
+        <option [value]="depthead.employeeId">{{depthead}}</option>
+    }
+        </select>
+    </div>
+    <div class="col-12">
+        <label>Created Date</label><br>
+        <input type="date" class="form-control" name="date" #date="ngModel" [(ngModel)]="deptobj.createdDate">
+    </div>
+</div>
+    </form>
+</div>
+<div class="card-footer">
+    <button class="btn btn-success" (click)="onSave()">Submit</button>
+</div>
+    </div>
+   </div> 
+</div>
+</div>
+</div>

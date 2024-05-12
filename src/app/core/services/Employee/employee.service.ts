@@ -17,6 +17,10 @@ export class EmployeeService {
     return this.http.get(APIConstant.API_URL+APIConstant.GET_EMP_BY_EMPID+id);
   }
 
+  getEmpbyDept(did:any){
+    return this.http.get(APIConstant.API_URL+APIConstant.GET_EMP_BY_DEPTID+did);
+  }
+
   AddEmp(obj:any){
 return this.http.post(APIConstant.API_URL+APIConstant.CREATE_EMPLOYEE,obj);
   }
