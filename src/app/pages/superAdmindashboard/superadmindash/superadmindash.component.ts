@@ -14,14 +14,14 @@ export class SuperadmindashComponent implements OnInit {
 
 admindashList:IAdmindash[]=[];
 
-constructor(private http:HttpClient,private admindash:SuperadmindashService){}
+constructor(private http:HttpClient,private admindashsrv:SuperadmindashService){}
 
   ngOnInit(): void {
     this.getAllAdminDash();
   }
 
   getAllAdminDash(){
-this.admindash.getallAdminDash().subscribe((res:any)=>{
+this.admindashsrv.getallAdminDash().subscribe((res:any)=>{
 this.admindashList=res.data;
 })
   }
