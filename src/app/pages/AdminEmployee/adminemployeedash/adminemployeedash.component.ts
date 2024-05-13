@@ -17,7 +17,7 @@ adminempList:IAdminEmp[]=[];
   constructor(private http:HttpClient,private adminempsrv:AdminemployeeService){}
 
   ngOnInit(): void {
-    this.getAllAdminEmpDash(this.adminempList);
+    // this.getAllAdminEmpDash(this.adminempList);
   }
 
   getAllAdminEmpDash(eid:any){

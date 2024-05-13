@@ -6,11 +6,12 @@ import { IEmployee } from '../../../core/models/Interfaces/IEmployee';
 import { FormsModule } from '@angular/forms';
 import { DepartmentService } from '../../../core/services/Department/department.service';
 import { IDepartment } from '../../../core/models/Interfaces/IDepartment';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-employee',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule,JsonPipe],
   templateUrl: './employee.component.html',
   styleUrl: './employee.component.css'
 })
@@ -59,7 +60,7 @@ onSave(){
 
 onEdit(eid:any){
   this.empsrv.getEmpbyId(eid.employeeId).subscribe((res:any)=>{
-    this.empobj=eid;
+    this.empobj=res.data;
   })
 }
 

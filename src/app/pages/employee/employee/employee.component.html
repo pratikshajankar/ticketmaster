@@ -66,6 +66,7 @@
                     <label for="">Gender</label><br>
                     <input type="text" class="form-control" name="gender" #gender="ngModel" [(ngModel)]="empobj.gender">
                 </div>
+                <!-- {{empobj|json}} -->
                 <div class="col-12">
                     <label for="">Department</label><br>
                     <select [(ngModel)]="empobj.deptId" class="form-control" name="dept" #dept="ngModel">
