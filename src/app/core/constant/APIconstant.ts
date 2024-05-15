@@ -2,7 +2,12 @@ export const APIConstant={
     
     API_URL:"https://freeapi.gerasim.in/api/Tickets/",
 
+
+    // login url
+    GET_LOGIN:"Login",
+
     // employee url
+    GET_ALL_ROLE:"GetAllRoles",
     GET_ALL_EMP:"GetEmployees",
     GET_EMP_BY_EMPID:"GetEmployeeById?id=",
     GET_EMP_BY_DEPTID:"GetEmployeesByDeptId?id=",
@@ -27,6 +32,6 @@ export const APIConstant={
 
     // department head dashboard
     GET_DEPTHEAD_DASHBOARD_BY_DEPTHEAD:"GetDeptHeadDashboardByDeptHead?deptHeadEmpId=",
-    
+
 
 }

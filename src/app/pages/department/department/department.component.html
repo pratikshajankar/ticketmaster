@@ -48,12 +48,13 @@
     </div>
     <div class="col-12">
         <label>Department Head</label><br>
-        <select [(ngModel)]="deptobj.deptHeadEmpId">
-        <option value="0" selected>Department Head Employee</option>
-        @for (depthead of deptheadempList; track $index) {
-        <option [value]="depthead.employeeId">{{depthead}}</option>
-    }
+        <select class="form-control" name="depthead" [(ngModel)]="deptobj.deptHeadEmpId">
+        <option value="0" selected>Deparment head Employee</option>
+        @for (emp of deptheadempList; track $index) {
+            <option [value]="emp.employeeId">{{emp.employeeName}}</option>
+        }
         </select>
+        <!-- <input type="text" class="form-control" name="depthead" [(ngModel)]="deptobj.deptHeadName"> -->
     </div>
     <div class="col-12">
         <label>Created Date</label><br>

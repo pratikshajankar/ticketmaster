@@ -1,0 +1,16 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+      
+      <ul class="nav navbar-nav">
+        @for (menu of filterdmenus; track $index) {
+        <li class="nav-item active">
+            <a class="nav-link" [routerLink]="menu.path">{{menu.text}}</a>
+        </li>
+      }
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>

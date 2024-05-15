@@ -1,0 +1,15 @@
+<form #form="ngForm">
+    <div class="row">
+        <div class="col-12">
+            <label for="">UserName</label><br>
+            <input type="text" class="form-control" name="UserName">
+        </div>
+        <div class="col-12">
+            <label for="">Password</label><br>
+            <input type="password" class="form-control" name="password">
+        </div>
+        <div class="col-12">
+            <button class="btn btn-success" (click)="login()">Login</button>
+        </div>
+    </div>
+</form>

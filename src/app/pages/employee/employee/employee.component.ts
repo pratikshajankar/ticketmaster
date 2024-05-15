@@ -7,6 +7,8 @@ import { FormsModule } from '@angular/forms';
 import { DepartmentService } from '../../../core/services/Department/department.service';
 import { IDepartment } from '../../../core/models/Interfaces/IDepartment';
 import { JsonPipe } from '@angular/common';
+import { RoleService } from '../../../core/services/Role/role.service';
+import { IRole } from '../../../core/models/Interfaces/IRole';
 
 @Component({
   selector: 'app-employee',
@@ -18,20 +20,27 @@ import { JsonPipe } from '@angular/common';
 export class EmployeeComponent implements OnInit{
 
 deptList:IDepartment[]=[];
-
+roleList:IRole[]=[];
 
   empobj:Employee=new Employee();
   empList:IEmployee[]=[];
   
 
 
-constructor(private http:HttpClient,private empsrv:EmployeeService,private deptsrv:DepartmentService){
+constructor(private http:HttpClient,private empsrv:EmployeeService,private deptsrv:DepartmentService,private rolesrv:RoleService){
 
 }
 
   ngOnInit(): void {
   this.getallemp();
   this.getalldept();
+  this.getallrole();
+  }
+
+  getallrole(){
+this.rolesrv.getAllrole().subscribe((res:any)=>{
+this.roleList=res.data;
+})
   }
 
   getalldept(){
