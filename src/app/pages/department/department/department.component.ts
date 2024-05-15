@@ -27,14 +27,14 @@ deptobj:Department=new Department();
 
   ngOnInit(): void {
    this.getAllDept(); 
-  //  this.getdeptEmp(this.deptheadempList);
+   this.getallemp();
   }
 
-// getdeptEmp(id:any){
-// this.empsrv.getEmpbyDept(id.deptId).subscribe((res:any)=>{
-//   this.deptheadempList=id;
-// })
-// }
+getallemp(){
+  this.empsrv.getAllEmployee().subscribe((res:any)=>{
+    this.deptheadempList=res.data;
+  })
+}
 
   getAllDept(){
 this.deptsrv.getAllDepartment().subscribe((res:any)=>{
