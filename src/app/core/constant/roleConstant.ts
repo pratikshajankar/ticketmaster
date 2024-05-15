@@ -9,7 +9,7 @@ export const RoleConstant={
             {
                 path:'department',
                 text:'department',
-                roles:['Admin']
+                roles:['Employee']
             }
     ]
 

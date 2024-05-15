@@ -78,7 +78,6 @@
                 </div>
                 <div class="col-12">
                     <label for="" >Role</label><br>
-                    <!-- <input type="text" class="form-control" name="role" #role="ngModel" [(ngModel)]="empobj.role"> -->
                     <select class="form-control"  name="role" [(ngModel)]="empobj.role">
                     <option value="0" selected>Select Role</option>
                     @for (role of roleList; track $index) {
