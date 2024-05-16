@@ -6,6 +6,7 @@ import { AdminemployeedashComponent } from './pages/AdminEmployee/adminemployeed
 import { DashboardComponent } from './pages/Dashboard/dashboard/dashboard.component';
 import { LoginComponent } from './pages/login/login.component';
 import { NavbarComponent } from './pages/navbar/navbar.component';
+import { CreateticketComponent } from './pages/createticket/createticket.component';
 
 export const routes: Routes = [
 
@@ -29,16 +30,12 @@ export const routes: Routes = [
         component:DepartmentComponent
     },
     {
-        path:'superadmindash',
-        component:SuperadmindashComponent
-    },
-    {
-      path:'adminemployeedash',
-      component:AdminemployeedashComponent  
-    },
-    {
         path:'dashboard',
         component:DashboardComponent
+    },
+    {
+      path:'createticket',
+      component:CreateticketComponent
     }
 ]
     }

@@ -2,11 +2,11 @@
     <div class="row">
         <div class="col-12">
             <label for="">Email ID</label><br>
-            <input type="text" class="form-control" name="UserName">
+            <input type="text" class="form-control" name="UserName" [(ngModel)]="loginobj.emailId">
         </div>
         <div class="col-12">
             <label for="">Password</label><br>
-            <input type="password" class="form-control" name="password">
+            <input type="password" class="form-control" name="password" [(ngModel)]="loginobj.password">
         </div>
         <div class="col-12">
             <button class="btn btn-success m-3" (click)="login()">Login</button>

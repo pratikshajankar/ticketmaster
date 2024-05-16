@@ -10,6 +10,11 @@ export const RoleConstant={
                 path:'department',
                 text:'department',
                 roles:['Employee','Department Head']
+            },
+            {
+                path:'createticket',
+                text:'createticket',
+                roles:['Employee']
             }
     ]
 

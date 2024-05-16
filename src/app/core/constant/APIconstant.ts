@@ -33,5 +33,8 @@ export const APIConstant={
     // department head dashboard
     GET_DEPTHEAD_DASHBOARD_BY_DEPTHEAD:"GetDeptHeadDashboardByDeptHead?deptHeadEmpId=",
 
+    // create ticket url
+    CREATE_TICKET:"CreateNewTicket",
+
 
 }

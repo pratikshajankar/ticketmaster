@@ -21,7 +21,7 @@ export class LoginComponent {
   
   this.loginsrv.getlogin(this.loginobj).subscribe((res:any)=>{
   
-    if (res && res.data && res.data.role && res.data.role === "Admin Department Employee") {
+    if (res && res.data && res.data.role && res.data.role === "Employee") {
       localStorage.setItem('localuserdata',JSON.stringify(res.data));
      this.router.navigateByUrl("dashboard");
     }
