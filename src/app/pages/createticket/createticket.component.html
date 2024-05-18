@@ -1,1 +1,95 @@
-<p>createticket works!</p>
+<div class="container">
+    <div class="card">
+        <div class="card-heading bg-secondary text-white text-center">
+            Ticket Information
+            <button class="btn addbtn btn-primary text-white text-end" data-bs-toggle="modal" data-bs-target="#ticketform">Add New Ticket</button>
+        </div>
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                    <th>Create Date</th>
+                    <th>Expected End Date</th>
+                    <th>Department</th>
+                    <th>Contact No</th>
+                    <th>Ticket No</th>
+                    <th>Created Employee</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                    @for (ticket of ticketList; track $index) {
+                     <tr>
+                        <td>{{ticket.createdDate}}</td>
+                        <td>{{ticket.expectedEndDate}}</td>
+                        <td>{{ticket.deptName}}</td>
+                        <td>{{ticket.contactNo}}</td>
+                        <td>{{ticket.ticketNo}}</td>
+                        <td>{{ticket.createdByEmployee}}</td>
+                        <td>
+                            <i class="fa-solid fa-pen-to-square m-1 bg-primary text-white p-2" data-bs-toggle="modal" data-bs-target="#ticketform" (click)="onEdit(ticket)" ></i>
+                            <i class="fa-solid fa-trash bg-danger m-1 text-white p-2" (click)="onDelete(ticket)"></i>
+                        </td>
+                     </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="ticketform">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-secondary text-white text-center">
+            <strong>Add Ticket</strong>
+            <i class="fa-regular fa-circle-xmark rounded bg-danger text-white close" data-bs-dismiss="modal"></i>
+        </div>
+        <div class="modal-body">
+<form #form="ngForm">
+    <div class="row">
+        <div class="col-12">
+            <label for="">Employee Name</label><br>
+            <select class="form-control" name="emp" [(ngModel)]="createticketobj.employeeId">
+            <option value="0" selected>Select Employee</option>
+            @for (emp of empList; track $index) {
+            <option [value]="emp.employeeId">{{emp.employeeName}}</option>
+        }
+            </select>
+        </div>
+        <div class="col-12">
+            <label for="">Saverity</label>
+            <input type="text" class="form-control" name="saverity" [(ngModel)]="createticketobj.severity">
+        </div>
+            <div class="col-12">
+                <label for="">Department</label>
+                <select class="form-control" name="dept" [(ngModel)]="createticketobj.deptId">
+                    <option value="0" selected>Select Department</option>
+                   @for (dept of deptList; track $index) {
+                    <option [value]="dept.deptId">{{dept.deptName}}</option>
+                   }
+                </select>
+            </div>
+            <div class="col-12">
+                <label for="">State</label>
+                <input type="text" class="form-control" name="state" [(ngModel)]="createticketobj.state">
+            </div>
+            <div class="col-12">
+                <label for="">RequestDetails</label>
+                <input type="text" class="form-control" name="reqdetail" [(ngModel)]="createticketobj.requestDetails">
+            </div>
+            
+    </div>
+</form>
+</div>
+<div class="modal-footer">
+    <div class="col-12">
+        <button class="btn btn-success" (click)="createTicket()">CreateTicket</button>
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
