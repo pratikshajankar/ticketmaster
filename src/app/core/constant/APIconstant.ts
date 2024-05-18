@@ -39,5 +39,17 @@ export const APIConstant={
     EDIT_TICKET:"GetTicketById?ticketId=",
     DELETE_TICKET:"DeleteTicket?id=",
 
+    GET_ASSIGNED_TICKET:"GetAssignedTicketsByEmpId?empId=",
+    GET_TICKET_CREATED_BY_EMP:"GetTicketsCreatedByEmpId?empId=",
+    GET_TICKETS_BY_DEPTHEAD:"GetAllTicketsByDeptHead?deptHeadEmpId=",
+    GET_NEW_TICKET:"getNewTickets?deptHeadEmpId=",
+
+    GET_REQ_BY_FILTER:"GetRequestByFilter",
+    ASSIGN_REQ:"AssignRequest",
+
+
+    START_TICKET:"startTicket?id=",
+    CLOSE_TICKET:"closeTicket?id=",
+
 
 }
