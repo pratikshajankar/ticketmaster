@@ -1,6 +1,8 @@
+                             @if (role=='Admin Department Employee') {
                              <div class="container m-3">
                                 <h4>Admin Dashboard</h4>
                              <div class="row">
+                                @if (admindashobj.totalTickets!==0) {
                             <div class="col-md-6 col-xl-3">
                                 <div class="card mb-3 widget-content bg-grow-early">
                                     <div class="widget-content-wrapper text-dark">
@@ -8,24 +10,14 @@
                                             <div class="widget-subheading">Total Tickets</div>
                                         </div>
                                         <div class="widget-content-right">
-                                            <div class="widget-numbers text-white"><span></span></div>
+                                            <div class="widget-numbers text-white"><span>{{admindashobj.totalTickets}}</span></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class=" col-md-6 col-xl-3">
-                                <div class="card mb-3 widget-content bg-midnight-bloom">
-                                    <div class="widget-content-wrapper text-white">
-                                        <div class="widget-content-left">
-                                            <div class="widget-subheading">Total Unassigned Tickets</div>
-                                        </div>
-                                        <div class="widget-content-right">
-                                            <div class="widget-numbers text-warning"><span></span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        }
 
+                        @if (admindashobj.totalAssignedTickets!==0) {
                             <div class=" col-md-6 col-xl-3">
                                 <div class="card mb-3 widget-content bg-premium-dark">
                                     <div class="widget-content-wrapper text-white">
@@ -33,11 +25,14 @@
                                             <div class="widget-subheading">Total Assigned Tickets</div>
                                         </div>
                                         <div class="widget-content-right">
-                                            <div class="widget-numbers text-warning"><span></span></div>
+                                            <div class="widget-numbers text-warning"><span>{{admindashobj.totalAssignedTickets}}</span></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        }
+
+                        @if (admindashobj.totalInProgressTickets!==0) {
                             <div class="col-md-6 col-xl-3">
                                 <div class="card mb-3 widget-content bg-grow-early">
                                     <div class="widget-content-wrapper text-white">
@@ -45,11 +40,14 @@
                                             <div class="widget-subheading">Total Inprogress Tickets</div>
                                         </div>
                                         <div class="widget-content-right">
-                                            <div class="widget-numbers text-white"><span></span></div>
+                                            <div class="widget-numbers text-white"><span>{{admindashobj.totalInProgressTickets}}</span></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        }
+
+                        @if (admindashobj.totalClosedTickets!==0) {
                             <div class="col-md-6 col-xl-3">
                                 <div class="card mb-3 widget-content bg-arielle-smile">
                                     <div class="widget-content-wrapper text-white">
@@ -57,15 +55,21 @@
                                             <div class="widget-subheading">Total Closed Tickets</div>
                                         </div>
                                         <div class="widget-content-right">
-                                            <div class="widget-numbers text-white"><span></span></div>
+                                            <div class="widget-numbers text-white"><span>{{admindashobj.totalClosedTickets}}</span></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        }
                         </div>
+                    </div> 
+                }
 
+                @if (role=='Employee') {
+                    <div class="container m-3">
                         <h4>Employee Dashboard</h4>
                         <div class="row">
+                            @if (empdashobj.totalTickets!==0) {
                             <div class="col-md-6 col-xl-3">
                                 <div class="card mb-3 widget-content bg-grow-early">
                                     <div class="widget-content-wrapper text-dark">
@@ -73,11 +77,13 @@
                                             <div class="widget-subheading">Total Tickets</div>
                                         </div>
                                         <div class="widget-content-right">
-                                            <div class="widget-numbers text-white"><span></span></div>
+                                            <div class="widget-numbers text-white"><span>{{empdashobj.totalTickets}}</span></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        }
+                        @if (empdashobj.totalUnAssignedTickets!==0) {
                             <div class=" col-md-6 col-xl-3">
                                 <div class="card mb-3 widget-content bg-premium-dark">
                                     <div class="widget-content-wrapper text-white">
@@ -85,12 +91,14 @@
                                             <div class="widget-subheading">Total Unassigned Tickets</div>
                                         </div>
                                         <div class="widget-content-right">
-                                            <div class="widget-numbers text-warning"><span></span></div>
+                                            <div class="widget-numbers text-warning"><span>{{empdashobj.totalUnAssignedTickets}}</span></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        }
 
+                        @if (empdashobj.totalAssignedTickets!==0) {
                             <div class=" col-md-6 col-xl-3">
                                 <div class="card mb-3 widget-content bg-midnight-bloom">
                                     <div class="widget-content-wrapper text-white">
@@ -98,11 +106,14 @@
                                             <div class="widget-subheading">Total Assigned Tickets</div>
                                         </div>
                                         <div class="widget-content-right">
-                                            <div class="widget-numbers text-warning"><span></span></div>
+                                            <div class="widget-numbers text-warning"><span>{{empdashobj.totalAssignedTickets}}</span></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        }
+
+                        @if (empdashobj.totalInProgressTickets!==0) {
                             <div class="col-md-6 col-xl-3">
                                 <div class="card mb-3 widget-content bg-grow-early">
                                     <div class="widget-content-wrapper text-white">
@@ -110,11 +121,13 @@
                                             <div class="widget-subheading">Total Inprogress Tickets</div>
                                         </div>
                                         <div class="widget-content-right">
-                                            <div class="widget-numbers text-white"><span></span></div>
+                                            <div class="widget-numbers text-white"><span>{{empdashobj.totalInProgressTickets}}</span></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        }
+                        @if (empdashobj.totalClosedTickets!==0) {
                             <div class="col-md-6 col-xl-3">
                                 <div class="card mb-3 widget-content bg-arielle-smile">
                                     <div class="widget-content-wrapper text-white">
@@ -122,15 +135,21 @@
                                             <div class="widget-subheading">Total Closed Tickets</div>
                                         </div>
                                         <div class="widget-content-right">
-                                            <div class="widget-numbers text-white"><span></span></div>
+                                            <div class="widget-numbers text-white"><span>{{empdashobj.totalClosedTickets}}</span></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        }
                         </div>
+                    </div>
+                }
 
+                @if (role=='Department Head') {
+                    <div class="container m-3">
                         <h4>DepartmentHead Dashboard</h4>
                         <div class="row">
+                            @if (deptheaddashobj.totalEmployees!==0) {
                             <div class="col-md-6 col-xl-3">
                                 <div class="card mb-3 widget-content bg-arielle-smile">
                                     <div class="widget-content-wrapper text-dark">
@@ -138,11 +157,13 @@
                                             <div class="widget-subheading">Total Employees</div>
                                         </div>
                                         <div class="widget-content-right">
-                                            <div class="widget-numbers text-white"><span></span></div>
+                                            <div class="widget-numbers text-white"><span>{{deptheaddashobj.totalEmployees}}</span></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        }
+                        @if (deptheaddashobj.totalTickets!==0) {
                             <div class="col-md-6 col-xl-3">
                                 <div class="card mb-3 widget-content bg-grow-early">
                                     <div class="widget-content-wrapper text-dark">
@@ -150,11 +171,13 @@
                                             <div class="widget-subheading">Total Tickets</div>
                                         </div>
                                         <div class="widget-content-right">
-                                            <div class="widget-numbers text-white"><span></span></div>
+                                            <div class="widget-numbers text-white"><span>{{deptheaddashobj.totalTickets}}</span></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        }
+                            @if (deptheaddashobj.totalUnAssignedTickets!==0) {
                             <div class=" col-md-6 col-xl-3">
                                 <div class="card mb-3 widget-content bg-premium-dark">
                                     <div class="widget-content-wrapper text-white">
@@ -162,12 +185,13 @@
                                             <div class="widget-subheading">Total Unassigned Tickets</div>
                                         </div>
                                         <div class="widget-content-right">
-                                            <div class="widget-numbers text-warning"><span></span></div>
+                                            <div class="widget-numbers text-warning"><span>{{deptheaddashobj.totalUnAssignedTickets}}</span></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
+                        }
+                            @if (deptheaddashobj.totalAssignedTickets!==0) {
                             <div class=" col-md-6 col-xl-3">
                                 <div class="card mb-3 widget-content bg-midnight-bloom">
                                     <div class="widget-content-wrapper text-white">
@@ -175,11 +199,13 @@
                                             <div class="widget-subheading">Total Assigned Tickets</div>
                                         </div>
                                         <div class="widget-content-right">
-                                            <div class="widget-numbers text-warning"><span></span></div>
+                                            <div class="widget-numbers text-warning"><span>{{deptheaddashobj.totalAssignedTickets}}</span></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        }
+                            @if (deptheaddashobj.totalInProgressTickets!==0) {
                             <div class="col-md-6 col-xl-3">
                                 <div class="card mb-3 widget-content bg-grow-early">
                                     <div class="widget-content-wrapper text-white">
@@ -187,11 +213,13 @@
                                             <div class="widget-subheading">Total Inprogress Tickets</div>
                                         </div>
                                         <div class="widget-content-right">
-                                            <div class="widget-numbers text-white"><span></span></div>
+                                            <div class="widget-numbers text-white"><span>{{deptheaddashobj.totalInProgressTickets}}</span></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        }
+                            @if (deptheaddashobj.totalClosedTickets!==0) {
                             <div class="col-md-6 col-xl-3">
                                 <div class="card mb-3 widget-content bg-arielle-smile">
                                     <div class="widget-content-wrapper text-white">
@@ -199,14 +227,17 @@
                                             <div class="widget-subheading">Total Closed Tickets</div>
                                         </div>
                                         <div class="widget-content-right">
-                                            <div class="widget-numbers text-white"><span></span></div>
+                                            <div class="widget-numbers text-white"><span>{{deptheaddashobj.totalClosedTickets}}</span></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        }
                         </div>
+                    </div>
+                }
 
-                    </div> 
+                    
                        
                       
     
