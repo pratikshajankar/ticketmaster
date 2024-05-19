@@ -1,10 +1,10 @@
 <div class="container m-3">
     <div class="row">
-        <div class="col-8">
+        <div class="col-12">
     <div class="card">
         <div class="card-heading text-center bg-secondary text-white">
             Department Info
-            <button class="btn addbtn btn-info">Add</button>
+            <button class="btn addbtn btn-info" data-bs-toggle="modal" data-bs-target="#deptform" (click)="Showsavebtn()">Add Department</button>
         </div>
         <div class="card-body">
             <table class="table table-bordered">
@@ -23,7 +23,7 @@
                             <td>{{dept.deptHeadName}}</td>
                             <td>{{dept.createdDate|date}}</td>
                             <td>
-                                <i class="fa-solid fa-pen-to-square m-1 bg-primary text-white p-2"></i>
+                                <i class="fa-solid fa-pen-to-square m-1 bg-primary text-white p-2" data-bs-toggle="modal" data-bs-target="#deptform" (click)="Showupdatebtn()" (click)="onEdit(dept)"></i>
                         <i class="fa-solid fa-trash bg-danger m-1 text-white p-2" (click)="onDelete(dept)"></i>
                             </td>
                         </tr>
@@ -33,18 +33,27 @@
         </div>
     </div> 
 </div> 
-<div class="col-4">
-   <div class="card">
-    <div class="card-heading bg-secondary text-white text-center">
+</div>
+   <div class="modal" id="deptform">
+    <div class="modal-dialog">
+        <div class="modal-content">
+    <div class="modal-heading bg-secondary text-white text-center">
         Add Department
-        <i class="fa-regular fa-circle-xmark m-1 rounded bg-danger text-white close"></i>
+        <i class="fa-regular fa-circle-xmark m-1 rounded bg-danger text-white close" data-bs-dismiss="modal"></i>
     </div>
-<div class="card-body">
+<div class="modal-body">
     <form #form="ngForm">
 <div class="row">
     <div class="col-12">
         <label>Department Name</label>
-        <input type="text" class="form-control" name="deptnm" #deptnm="ngModel" [(ngModel)]="deptobj.deptName">
+        <input type="text" class="form-control" name="deptnm" #deptnm="ngModel" [(ngModel)]="deptobj.deptName" required>
+        @if (deptnm.touched||deptnm.dirty) {
+            <div class="text-danger">
+                @if (deptnm.errors) {
+                    <span>Please Enter Department Name</span>
+                }
+            </div>
+        }
     </div>
     <div class="col-12">
         <label>Department Head</label><br>
@@ -58,14 +67,26 @@
     </div>
     <div class="col-12">
         <label>Created Date</label><br>
-        <input type="date" class="form-control" name="date" #date="ngModel" [(ngModel)]="deptobj.createdDate">
+        <input type="date" class="form-control" name="date" #date="ngModel" [(ngModel)]="deptobj.createdDate" required>
+        @if (date.touched||date.dirty) {
+            <div class="text-danger">
+                @if (date.errors) {
+                    <span>Enter Created Date</span>
+                }
+            </div>
+        }
     </div>
 </div>
     </form>
 </div>
-<div class="card-footer">
+<div class="modal-footer">
+    @if (savebtn==true) {
     <button class="btn btn-success m-1" (click)="onSave()">Submit</button>
-    <button class="btn btn-info">Update</button>
+}
+@if (updatebtn) {
+    <button class="btn btn-info" (click)="onUpdate()">Update</button>
+}
+    <button class="btn btn-danger" (click)="reset()">Reset</button>
 </div>
     
    </div> 

@@ -18,6 +18,9 @@ import { ITicket } from '../../core/models/Interfaces/ICreateticket';
 })
 export class CreateticketComponent implements OnInit{
 
+  savebtn:boolean=false;
+  updatebtn:boolean=false;
+
 empList:IEmployee[]=[];
 deptList:IDepartment[]=[];
 
@@ -82,4 +85,17 @@ this.createticketsrv.Editticket(tid.ticketId).subscribe((res:any)=>{
     })
   }
 
+  ShowSavebtn(){
+    this.savebtn=true;
+    this.updatebtn=false;
+  }
+
+  ShowUpdatebtn(){
+    this.savebtn=false;
+    this.updatebtn=true;
+  }
+
+  reset(){
+    this.createticketobj=new CreateTicket();
+  }
 }

@@ -19,6 +19,9 @@ import { IRole } from '../../../core/models/Interfaces/IRole';
 })
 export class EmployeeComponent implements OnInit{
 
+  savebutton:boolean=false;
+  updatebutton:boolean=false;
+
 deptList:IDepartment[]=[];
 roleList:IRole[]=[];
 
@@ -96,6 +99,20 @@ onDelete(id:any){
       alert(res.message);
     }
   })
+}
+
+showSavebtn(){
+  this.savebutton=true;
+  this.updatebutton=false;
+}
+
+showupdatebtn(){
+  this.savebutton=false;
+  this.updatebutton=true;
+}
+
+reset(){
+  this.empobj=new Employee();
 }
 
 

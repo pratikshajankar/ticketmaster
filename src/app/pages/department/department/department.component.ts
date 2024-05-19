@@ -17,6 +17,9 @@ import { IEmployee } from '../../../core/models/Interfaces/IEmployee';
 })
 export class DepartmentComponent implements OnInit{
 
+  savebtn:boolean=false;
+  updatebtn:boolean=false;
+
   deptheadempList:IEmployee[]=[];
 
 deptList:IDepartment[]=[];
@@ -54,6 +57,22 @@ this.deptList=res.data;
     })
   }
 
+  onEdit(obj:any){
+   this.deptobj=obj;
+  }
+
+  onUpdate(){
+    this.deptsrv.updateDept(this.deptobj).subscribe((res:any)=>{
+      if(res.result){
+        alert("data updated successfully");
+        this.getAllDept();
+      }
+      else{
+        alert(res.message);
+      }
+    })
+  }
+
   
 
   onDelete(did:any){
@@ -67,6 +86,19 @@ this.deptsrv.deleteDept(did.deptId).subscribe((res:any)=>{
   }
 
 })
+  }
+
+  Showsavebtn(){
+    this.savebtn=true;
+    this.updatebtn=false;
+  }
+  Showupdatebtn(){
+    this.savebtn=false;
+    this.updatebtn=true;
+  }
+
+  reset(){
+    this.deptobj=new  Department();
   }
 
 }

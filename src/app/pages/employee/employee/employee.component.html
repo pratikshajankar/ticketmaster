@@ -1,10 +1,10 @@
 <div class="container m-3">
 <div class="row">
-    <div class="col-8">
+    <div class="col-12">
         <div class="card">
             <div class="card-heading bg-secondary text-white text-center">
                 Employee Details
-                <button class="btn addbtn btn-primary text-white text-end">Add Employee</button>
+                <button class="btn addbtn btn-info text-white text-end" data-bs-toggle="modal" data-bs-target="#empform" (click)="showSavebtn()">Add Employee</button>
             </div>
             <div class="card-body">
         <table class="table table-bordered">
@@ -27,7 +27,7 @@
                     <td>{{emp.deptName}}</td>
                     <td>{{emp.role}}</td>
                     <td>
-                        <i class="fa-solid fa-pen-to-square m-1 bg-primary text-white p-2" (click)="onEdit(emp)" ></i>
+                        <i class="fa-solid fa-pen-to-square m-1 bg-primary text-white p-2" data-bs-toggle="modal" data-bs-target="#empform" (click)="onEdit(emp)" (click)="showupdatebtn()"></i>
                         <i class="fa-solid fa-trash bg-danger m-1 text-white p-2" (click)="onDelete(emp)"></i>
                     </td>
                 </tr>
@@ -37,48 +37,96 @@
     </div>
     </div>
 </div>
-<div class="col-4">
-    <div class="card">
-        <div class="card-heading bg-secondary text-white text-center">
+</div>
+    <div class="modal" id="empform">
+        <div class="modal-dialog">
+            <div class="modal-content">
+        <div class="modal-header bg-secondary text-white text-center">
             Add Employee
-            <i class="fa-regular fa-circle-xmark m-1 rounded bg-danger text-white close"></i>
+            <i class="fa-regular fa-circle-xmark m-1 rounded bg-danger text-white close" data-bs-dismiss="modal"></i>
         </div>
-        <div class="card-cody text-center">
+        <div class="modal-body text-center">
             <form #form="ngForm">
             <div class="row">
                 <div class="col-12">
                     <label for="">Employee Name</label><br>
-                    <input type="text" class="form-control" name="empnm" #empnm="ngModel" [(ngModel)]="empobj.employeeName">
+                    <input type="text" class="form-control" name="empnm" #empnm="ngModel" [(ngModel)]="empobj.employeeName" required>
+                    @if (empnm.touched||empnm.dirty) {
+                        <div class="text-danger">
+                            @if (empnm.errors) {
+                                <span>Please Enter Employee Name</span>
+                            }
+                        </div>
+                    }
                 </div>
                 <div class="col-12">
                     <label for="">Contact No</label><br>
-                    <input type="text" class="form-control" name="contact" #contact="ngModel" [(ngModel)]="empobj.contactNo">
+                    <input type="text" class="form-control" name="contact" #contact="ngModel" [(ngModel)]="empobj.contactNo" required>
+                    @if (contact.touched||contact.dirty) {
+                        <div class="text-danger">
+                            @if (contact.errors) {
+                                <span>Enter Employee Contact No</span>
+                            }
+                        </div>
+                    }
                 </div>
                 <div class="col-12">
                     <label for="">Email ID</label><br>
-                    <input type="text" class="form-control" name="email" #email="ngModel" [(ngModel)]="empobj.emailId">
+                    <input type="text" class="form-control" name="email" #email="ngModel" [(ngModel)]="empobj.emailId" required>
+                    @if (email.touched||email.dirty) {
+                        <div class="text-danger">
+                            @if (email.errors) {
+                                <span>Enter Email Id</span>
+                            }
+                        </div>
+                    }
                 </div>
                 <div class="col-12">
                     <label for="">Password</label><br>
-                    <input type="password" class="form-control" name="password" #password="ngModel" [(ngModel)]="empobj.password">
+                    <input type="password" class="form-control" name="password" #password="ngModel" [(ngModel)]="empobj.password" required>
+                    @if (password.touched||password.dirty) {
+                        <div class="text-danger">
+                            @if (password.errors) {
+                                <span>Enter Password</span>
+                            }
+                        </div>
+                    }
                 </div>
                 <div class="col-12">
                     <label for="">Gender</label><br>
-                    <input type="text" class="form-control" name="gender" #gender="ngModel" [(ngModel)]="empobj.gender">
+                    <input type="text" class="form-control" name="gender" #gender="ngModel" [(ngModel)]="empobj.gender" required>
+                    @if (gender.touched||gender.dirty) {
+                        <div class="text-danger">
+                            @if (gender.errors) {
+                                <span>Enter Your Gender</span>
+                            }
+                        </div>
+                    }
                 </div>
                 <!-- {{empobj|json}} -->
+
+                
                 <div class="col-12">
                     <label for="">Department</label><br>
-                    <select [(ngModel)]="empobj.deptId" class="form-control" name="dept" #dept="ngModel">
+                    <select [(ngModel)]="empobj.deptId" class="form-control" name="dept" #dept="ngModel" required>
                     <option value="0" selected>Select Department</option>
                     @for (dept of deptList; track $index) {
                         <option [value]="dept.deptId">{{dept.deptName}}</option>
                     }
                     </select>
+                    @if (dept.touched||dept.dirty) {
+                        <div class="text-danger">
+                            
+                        </div>
+                    } 
+                    @if (dept.errors) {
+                        <span>Please Select Department</span>
+                    }
                 </div>
+
                 <div class="col-12">
                     <label for="" >Role</label><br>
-                    <select class="form-control"  name="role" [(ngModel)]="empobj.role">
+                    <select class="form-control"  name="role" [(ngModel)]="empobj.role" required>
                     <option value="0" selected>Select Role</option>
                     @for (role of roleList; track $index) {
                         <option>{{role}}</option>
@@ -88,9 +136,15 @@
             </div>
         </form>
         </div>
-        <div class="card-footer">
+        <div class="modal-footer">
+            @if (savebutton==true) {
             <button class="btn savebtn btn-success text-white m-3" (click)="onSave()">Save</button>
-            <button class="btn updatebtn btn-info text-white" (click)="onUpdate()">Update</button>
+        }
+        @if (updatebutton==true) {
+            <button class="btn updatebtn btn-info text-white m-1" (click)="onUpdate()">Update</button>
+        }
+
+        <button class="btn btn-danger" (click)="reset()">Reset</button>
         </div>
     </div>
 </div>

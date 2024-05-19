@@ -31,4 +31,8 @@ export class LoginComponent {
   })
   }
 
+  reset(){
+    this.loginobj=new Loginobj();
+  }
+
 }

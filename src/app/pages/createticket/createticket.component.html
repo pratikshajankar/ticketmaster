@@ -2,7 +2,7 @@
     <div class="card">
         <div class="card-heading bg-secondary text-white text-center">
             Ticket Information
-            <button class="btn addbtn btn-primary text-white text-end" data-bs-toggle="modal" data-bs-target="#ticketform">Add New Ticket</button>
+            <button class="btn addbtn btn-info text-white text-end" data-bs-toggle="modal" data-bs-target="#ticketform" (click)="ShowSavebtn()">Add New Ticket</button>
         </div>
     <div class="row">
         <div class="col-12">
@@ -28,7 +28,7 @@
                         <td>{{ticket.ticketNo}}</td>
                         <td>{{ticket.createdByEmployee}}</td>
                         <td>
-                            <i class="fa-solid fa-pen-to-square m-1 bg-primary text-white p-2" data-bs-toggle="modal" data-bs-target="#ticketform" (click)="onEdit(ticket)" ></i>
+                            <i class="fa-solid fa-pen-to-square m-1 bg-primary text-white p-2" data-bs-toggle="modal" data-bs-target="#ticketform" (click)="ShowUpdatebtn()" (click)="onEdit(ticket)" ></i>
                             <i class="fa-solid fa-trash bg-danger m-1 text-white p-2" (click)="onDelete(ticket)"></i>
                         </td>
                      </tr>
@@ -61,7 +61,14 @@
         </div>
         <div class="col-12">
             <label for="">Saverity</label>
-            <input type="text" class="form-control" name="saverity" [(ngModel)]="createticketobj.severity">
+            <input type="text" class="form-control" name="saverity" #saverity="ngModel" [(ngModel)]="createticketobj.severity" required>
+            @if (saverity.touched||saverity.dirty) {
+                <div class="text-danger">
+                    @if (saverity.errors) {
+                        <span>Please Enter Saverity</span>
+                    }
+                </div>
+            }
         </div>
             <div class="col-12">
                 <label for="">Department</label>
@@ -74,11 +81,25 @@
             </div>
             <div class="col-12">
                 <label for="">State</label>
-                <input type="text" class="form-control" name="state" [(ngModel)]="createticketobj.state">
+                <input type="text" class="form-control" name="state" #state="ngModel" [(ngModel)]="createticketobj.state" required>
+                @if (state.touched||state.dirty) {
+                    <div class="text-danger">
+                        @if (state.errors) {
+                            <span>Enter State</span>
+                        }
+                    </div>
+                }
             </div>
             <div class="col-12">
                 <label for="">RequestDetails</label>
-                <input type="text" class="form-control" name="reqdetail" [(ngModel)]="createticketobj.requestDetails">
+                <input type="text" class="form-control" name="reqdetail" #reqdetail="ngModel" [(ngModel)]="createticketobj.requestDetails" required>
+                @if (reqdetail.touched||reqdetail.dirty) {
+                    <div class="text-danger">
+                        @if (reqdetail.errors) {
+                            <span>Enter Request Details</span>
+                        }
+                    </div>
+                }
             </div>
             
     </div>
@@ -86,7 +107,13 @@
 </div>
 <div class="modal-footer">
     <div class="col-12">
-        <button class="btn btn-success" (click)="createTicket()">CreateTicket</button>
+        @if (savebtn==true) {
+        <button class="btn btn-success m-1" (click)="createTicket()">CreateTicket</button>
+    }
+    @if (updatebtn) {
+        <button class="btn btn-info m-1">Update</button>
+    }
+        <button class="btn btn-danger" (click)="reset()">Reset</button>
     </div>
 </div>
 </div>
