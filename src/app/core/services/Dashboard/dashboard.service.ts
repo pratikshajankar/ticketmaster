@@ -5,11 +5,19 @@ import { APIConstant } from '../../constant/APIconstant';
 @Injectable({
   providedIn: 'root'
 })
-export class EmployeedashService {
+export class DashboardService {
 
   constructor(private http:HttpClient) { }
 
-  getAllEmpDash(eid:any){
+  getEmpDash(eid:any){
     return this.http.get(APIConstant.API_URL+APIConstant.GET_EMP_DASHBOARD_BY_EMPID+eid);
+  }
+
+  getDeptHeadDash(hid:any){
+    return this.http.get(APIConstant.API_URL+APIConstant.GET_DEPTHEAD_DASHBOARD_BY_DEPTHEAD+hid);
+  }
+
+  getAdminDash(aid:any){
+    return this.http.get(APIConstant.API_URL+APIConstant.GET_ADMIN_EMPLOYEE_DASHBOARD+aid);
   }
 }

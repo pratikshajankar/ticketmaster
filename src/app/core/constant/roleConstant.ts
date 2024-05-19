@@ -4,17 +4,22 @@ export const RoleConstant={
             {
                 path:'employee',
                 text:'employee',
-                roles:['Employee','Admin Department Employee','Department Head']
+                roles:['Admin Department Employee']
             },
             {
                 path:'department',
                 text:'department',
-                roles:['Employee','Department Head']
+                roles:['Admin Department Employee']
             },
             {
                 path:'createticket',
                 text:'createticket',
-                roles:['Employee']
+                roles:['Employee','Admin Department Employee','Department Head']
+            },
+            {
+                path:'dashboard',
+                text:'dashboard',
+                roles:['Employee','Admin Department Employee','Department Head']
             }
     ]
 
