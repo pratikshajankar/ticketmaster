@@ -3,22 +3,22 @@ export const RoleConstant={
     menus:[
             {
                 path:'employee',
-                text:'employee',
+                text:'Employee',
                 roles:['Admin Department Employee']
             },
             {
                 path:'department',
-                text:'department',
+                text:'Department',
                 roles:['Admin Department Employee']
             },
             {
                 path:'createticket',
-                text:'createticket',
+                text:'Createticket',
                 roles:['Employee','Admin Department Employee','Department Head']
             },
             {
                 path:'dashboard',
-                text:'dashboard',
+                text:'Dashboard',
                 roles:['Employee','Admin Department Employee','Department Head']
             }
     ]

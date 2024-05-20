@@ -5,6 +5,7 @@
             <button class="btn addbtn btn-info text-white text-end" data-bs-toggle="modal" data-bs-target="#ticketform" (click)="ShowSavebtn()">Add New Ticket</button>
         </div>
     <div class="row">
+        <!-- @if (role=='Employee') { -->
         <div class="col-12">
             <table class="table table-bordered">
                 <thead>
@@ -37,13 +38,14 @@
 
             </table>
         </div>
+    <!-- } -->
     </div>
 </div>
 
 <div class="card" id="emptable">
     <div class="card-heading bg-secondary text-white text-center">
         Ticket Information
-        <!-- <button class="btn addbtn btn-info text-white text-end" data-bs-toggle="modal" data-bs-target="#ticketform" (click)="ShowSavebtn()">Add New Ticket</button> -->
+        <button class="btn addbtn btn-info text-white text-end" data-bs-toggle="modal" data-bs-target="#ticketform" (click)="ShowSavebtn()">Add New Ticket</button> 
     </div>
 <div class="row">
     <!-- @if (role==='Department Head') { -->
@@ -84,7 +86,7 @@
     </div>
 <!-- } -->
 </div>
-</div>
+</div> 
 
 <div class="modal" id="ticketform">
     <div class="modal-dialog">
@@ -169,7 +171,7 @@
 <div class="modal" id="assignform">
 <div class="modal-dialog">
     <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header bg-secondary text-white">
             Assign Ticket
             <i class="fa-regular fa-circle-xmark rounded bg-danger text-white close" data-bs-dismiss="modal"></i>
         </div>

@@ -18,14 +18,18 @@ export class LoginComponent {
   constructor(private loginsrv:LoginService,private router:Router){}
 
   login(){
-  
   this.loginsrv.getlogin(this.loginobj).subscribe((res:any)=>{
-  
-    if (res && res.data && res.data.role && res.data.role === "Employee" ) {
+    if(res.result){
       localStorage.setItem('localuserdata',JSON.stringify(res.data));
-     this.router.navigateByUrl("dashboard");
-    }
-    else{
+  if(res.data.role=="Employee"){
+    this.router.navigateByUrl("dashboard");
+  }else if(res.data.role=="Admin Department Employee"){
+    this.router.navigateByUrl("dashboard");
+  }else if(res.data.role=="Department Head"){
+        this.router.navigateByUrl("dashboard");
+  }
+   
+  } else{
       alert(res.message);
     }
   })
@@ -36,3 +40,4 @@ export class LoginComponent {
   }
 
 }
+

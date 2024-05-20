@@ -21,6 +21,9 @@ import { Assignreq } from '../../core/models/Classes/Assignreq';
 export class CreateticketComponent implements OnInit{
 
   role:string="";
+  Userdata:any;
+empid:number=0;
+
 
   savebtn:boolean=false;
   updatebtn:boolean=false;
@@ -38,6 +41,13 @@ ticketList:ITicket[]=[];
   }
 
   ngOnInit(): void {
+
+// if(this.Userdata.role=='Employee'){
+//   this.getAllTickets();
+// }
+
+
+
    this.getallEmp(); 
    this.getdept();
    this.getAllTickets();
