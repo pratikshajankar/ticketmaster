@@ -24,4 +24,8 @@ getallticket(){
   deleteTicket(id:any){
     return this.http.delete(APIConstant.API_URL+APIConstant.DELETE_TICKET+id);
   }
+
+  assignReq(obj:any){
+    return this.http.post(APIConstant.API_URL+APIConstant.ASSIGN_REQ,obj);
+  }
 }

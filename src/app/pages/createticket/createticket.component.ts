@@ -8,21 +8,27 @@ import { IEmployee } from '../../core/models/Interfaces/IEmployee';
 import { DepartmentService } from '../../core/services/Department/department.service';
 import { IDepartment } from '../../core/models/Interfaces/IDepartment';
 import { ITicket } from '../../core/models/Interfaces/ICreateticket';
+import { DatePipe } from '@angular/common';
+import { Assignreq } from '../../core/models/Classes/Assignreq';
 
 @Component({
   selector: 'app-createticket',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule,DatePipe],
   templateUrl: './createticket.component.html',
   styleUrl: './createticket.component.css'
 })
 export class CreateticketComponent implements OnInit{
+
+  role:string="";
 
   savebtn:boolean=false;
   updatebtn:boolean=false;
 
 empList:IEmployee[]=[];
 deptList:IDepartment[]=[];
+
+assigntickobj:Assignreq=new Assignreq();
 
 ticketList:ITicket[]=[];
   createticketobj:CreateTicket=new CreateTicket();
@@ -93,6 +99,21 @@ this.createticketsrv.Editticket(tid.ticketId).subscribe((res:any)=>{
   ShowUpdatebtn(){
     this.savebtn=false;
     this.updatebtn=true;
+  }
+
+  showassignform(){
+
+  }
+
+  assignreq(){
+    this.createticketsrv.assignReq(this.assigntickobj).subscribe((res:any)=>{
+      if(res.result){
+        alert("ticket assigned successfully");
+      }
+      else{
+        alert(res.message);
+      }
+    })
   }
 
   reset(){
