@@ -42,9 +42,7 @@ ticketList:ITicket[]=[];
 
   ngOnInit(): void {
 
-// if(this.Userdata.role=='Employee'){
-//   this.getAllTickets();
-// }
+
 
 
 
@@ -125,6 +123,12 @@ this.createticketsrv.Editticket(tid.ticketId).subscribe((res:any)=>{
       }
     })
   }
+
+  // getnewrec(id:any){
+  //   this.createticketsrv.getNewticket(id.deptHeadEmpId).subscribe((res:any)=>{
+  //     this.
+  //   })
+  // }
 
   reset(){
     this.createticketobj=new CreateTicket();

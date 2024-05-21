@@ -28,4 +28,8 @@ getallticket(){
   assignReq(obj:any){
     return this.http.post(APIConstant.API_URL+APIConstant.ASSIGN_REQ,obj);
   }
+
+  getNewticket(id:any){
+    return this.http.get(APIConstant.API_URL+APIConstant.GET_NEW_TICKET+id);
+  }
 }

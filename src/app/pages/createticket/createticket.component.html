@@ -1,4 +1,5 @@
 <div class="container">
+    <!-- <button class="btn btn-info m-1" (click)="getnewrec()">Get New Record</button> -->
     <div class="card">
         <div class="card-heading bg-secondary text-white text-center">
             Ticket Information
@@ -13,7 +14,7 @@
                     <th>Create Date</th>
                     <th>Expected End Date</th>
                     <th>Department</th>
-                    <th>Contact No</th>
+                    <th>State</th>
                     <th>Ticket No</th>
                     <th>Created Employee</th>
                     <th>Action</th>
@@ -25,11 +26,16 @@
                         <td>{{ticket.createdDate}}</td>
                         <td>{{ticket.expectedEndDate}}</td>
                         <td>{{ticket.deptName}}</td>
-                        <td>{{ticket.contactNo}}</td>
+                        <td>{{ticket.state}}</td>
                         <td>{{ticket.ticketNo}}</td>
                         <td>{{ticket.createdByEmployee}}</td>
                         <td>
+                            <!-- @if (role=='Employee') { -->
                             <i class="fa-solid fa-pen-to-square m-1 bg-primary text-white p-2" data-bs-toggle="modal" data-bs-target="#ticketform" (click)="ShowUpdatebtn()" (click)="onEdit(ticket)" ></i>
+                        <!-- } -->
+                        <!-- @if (role=='Department Head') { -->
+                            <button class="btn btn-info" (click)="showassignform()" data-bs-toggle="modal" data-bs-target="#assignform">Assign</button>
+                        <!-- } -->
                             <i class="fa-solid fa-trash bg-danger m-1 text-white p-2" (click)="onDelete(ticket)"></i>
                         </td>
                      </tr>
@@ -42,51 +48,7 @@
     </div>
 </div>
 
-<div class="card" id="emptable">
-    <div class="card-heading bg-secondary text-white text-center">
-        Ticket Information
-        <button class="btn addbtn btn-info text-white text-end" data-bs-toggle="modal" data-bs-target="#ticketform" (click)="ShowSavebtn()">Add New Ticket</button> 
-    </div>
-<div class="row">
-    <!-- @if (role==='Department Head') { -->
-    <div class="col-12">
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                <th>Create Date</th>
-                <th>Expected End Date</th>
-                <th>Department</th>
-                <th>State</th>
-                <th>Ticket No</th>
-                <th>Created Employee</th>
-                <th>Action</th>
-            </tr>
-            </thead>
-            <tbody>
-                @for (ticket of ticketList; track ticket.ticketId) {
-                 <tr>
-                    <td>{{ticket.createdDate|date}}</td>
-                    <td>{{ticket.expectedEndDate|date}}</td>
-                    <td>{{ticket.deptName}}</td>
-                    <td>{{ticket.state}}</td>
-                    <td>{{ticket.ticketNo}}</td>
-                    <td>{{ticket.createdByEmployee}}</td>
-                    <td>
-                        @if (ticket.state==='Un-Assigned') {
-                        <button class="btn btn-info" (click)="showassignform()" data-bs-toggle="modal" data-bs-target="#assignform">Assign</button>
-                    }
-                    <i class="fa-solid fa-trash bg-danger m-1 text-white p-2" (click)="onDelete(ticket)"></i>
 
-                    </td>
-                 </tr>
-                }
-            </tbody>
-
-        </table>
-    </div>
-<!-- } -->
-</div>
-</div> 
 
 <div class="modal" id="ticketform">
     <div class="modal-dialog">
