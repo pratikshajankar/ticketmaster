@@ -4,6 +4,7 @@ export class CreateTicket{
     "deptId": 0;
     "state": string;
     "requestDetails":string;
+    "createdByEmployee":string;
 
     constructor(){
         this.employeeId=0;
@@ -11,5 +12,6 @@ export class CreateTicket{
         this.deptId=0;
     this.state="";
     this.requestDetails="";
+    this.createdByEmployee="";
     }
 }

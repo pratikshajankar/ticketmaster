@@ -32,4 +32,29 @@ getallticket(){
   getNewticket(id:any){
     return this.http.get(APIConstant.API_URL+APIConstant.GET_NEW_TICKET+id);
   }
+
+  getAllTicketdepthead(did:any){
+    return this.http.get(APIConstant.API_URL+APIConstant.GET_TICKETS_BY_DEPTHEAD+did);
+  }
+
+  getAssignTicketbyEmpid(eid:any){
+    return this.http.get(APIConstant.API_URL+APIConstant.GET_ASSIGNED_TICKET+eid);
+  }
+
+  StartTicket(obj:any){
+return this.http.post(APIConstant.API_URL+APIConstant.START_TICKET,obj);
+  }
+
+  CloseTicket(obj:any){
+    return this.http.post(APIConstant.API_URL+APIConstant.CLOSE_TICKET,obj);
+  }
+
+  getTicketCreatedbyEmp(eid:any){
+    return this.http.get(APIConstant.API_URL+APIConstant.GET_TICKET_CREATED_BY_EMP+eid);
+  }
+
+  getEmpbyDeptid(did:any){
+    return this.http.get(APIConstant.API_URL+APIConstant.GET_EMP_BY_DEPTID+did);
+  }
+  
 }
