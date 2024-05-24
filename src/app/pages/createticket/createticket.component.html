@@ -13,9 +13,9 @@
     <div class="card">
         <div class="card-heading bg-secondary text-white text-center">
             Ticket Information
-            <!-- @if (role=='Employee') { -->
+            @if (role=='Employee') {
             <button class="btn addbtn btn-info text-white text-end" data-bs-toggle="modal" data-bs-target="#ticketform" (click)="ShowSavebtn()">Add New Ticket</button>
-        <!-- } -->
+        }
         </div>
     <div class="row">
         @if (role=='Employee') {
