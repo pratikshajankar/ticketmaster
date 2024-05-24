@@ -8,7 +8,7 @@ import { IEmployee } from '../../core/models/Interfaces/IEmployee';
 import { DepartmentService } from '../../core/services/Department/department.service';
 import { IDepartment } from '../../core/models/Interfaces/IDepartment';
 import { ITicket } from '../../core/models/Interfaces/ICreateticket';
-import { CommonModule, DatePipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { Assignreq } from '../../core/models/Classes/Assignreq';
 
 @Component({

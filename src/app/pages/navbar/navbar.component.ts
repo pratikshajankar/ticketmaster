@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { RoleConstant } from '../../core/constant/roleConstant';
 import { compileNgModule } from '@angular/compiler';
 
@@ -17,7 +17,7 @@ export class NavbarComponent {
   filterdmenus:any[]=[];
   role:string='';
 
-  constructor(){
+  constructor(private router:Router){
     this.menu=RoleConstant.menus;
     const userData=localStorage.getItem('localuserdata');
     if(userData!=null){
@@ -31,6 +31,11 @@ export class NavbarComponent {
       }
      });
     
+  }
+
+  logout(){
+    localStorage.clear();
+this.router.navigate(['/login']);
   }
 
 }
