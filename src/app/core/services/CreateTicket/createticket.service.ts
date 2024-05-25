@@ -41,12 +41,12 @@ getallticket(){
     return this.http.get(APIConstant.API_URL+APIConstant.GET_ASSIGNED_TICKET+eid);
   }
 
-  StartTicket(obj:any){
-return this.http.post(APIConstant.API_URL+APIConstant.START_TICKET,obj);
+  StartTicket(tid:any){
+return this.http.post(APIConstant.API_URL+APIConstant.START_TICKET,tid);
   }
 
-  CloseTicket(obj:any){
-    return this.http.post(APIConstant.API_URL+APIConstant.CLOSE_TICKET,obj);
+  CloseTicket(id:any){
+    return this.http.post(APIConstant.API_URL+APIConstant.CLOSE_TICKET,id);
   }
 
   getTicketCreatedbyEmp(eid:any){

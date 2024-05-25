@@ -8,13 +8,13 @@ import { IEmployee } from '../../core/models/Interfaces/IEmployee';
 import { DepartmentService } from '../../core/services/Department/department.service';
 import { IDepartment } from '../../core/models/Interfaces/IDepartment';
 import { ITicket } from '../../core/models/Interfaces/ICreateticket';
-import { DatePipe } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { Assignreq } from '../../core/models/Classes/Assignreq';
 
 @Component({
   selector: 'app-createticket',
   standalone: true,
-  imports: [FormsModule, DatePipe],
+  imports: [FormsModule, DatePipe,CommonModule],
   templateUrl: './createticket.component.html',
   styleUrl: './createticket.component.css'
 })
@@ -181,7 +181,7 @@ export class CreateticketComponent implements OnInit {
     console.log("Selected Ticket ID:", this.assigntickobj.ticketId);
   }
 
-  startTicket(ticketId: number) {
+  startTicket(ticketId: any) {
     this.assignTicket(ticketId);
     this.createticketsrv.StartTicket(ticketId).subscribe((res: any) => {
       if (res.result) {
@@ -193,8 +193,8 @@ export class CreateticketComponent implements OnInit {
       }
     })
   }
-
-  closeticket(ticketId: number) {
+  
+  closeticket(ticketId: any) {
     this.assignTicket(ticketId);
     this.createticketsrv.CloseTicket(ticketId).subscribe((res: any) => {
       if (res.result) {
@@ -209,5 +209,17 @@ export class CreateticketComponent implements OnInit {
 
   reset() {
     this.createticketobj = new CreateTicket();
+  }
+
+  showModel(){
+
+  }
+
+  closeModel(){
+
+  }
+
+  closeModelAssignForm(){
+
   }
 }

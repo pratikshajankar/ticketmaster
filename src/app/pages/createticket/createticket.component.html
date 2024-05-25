@@ -1,91 +1,83 @@
-<div class="container">
-    @if (role=='Department Head') {
-        <div class="row">
-            <div class="col-2">
- <button class="btn btn-info m-1" (click)="getalltickdepthead(empid)">Get All Record</button>
+<div class="row mt-5 justify-content-end" *ngIf="role === 'Department Head'">
+    <div class="col-1 ">
+      <button class="btn text-white" style="background-color: #9526a9;" (click)="getalltickdepthead(empid)">Get All
+            Record</button>
+    </div>
+    <div class="col-2">
+        <button class="btn text-white" style="background-color: #9526a9;" (click)="getnewticket(empid)">Get New
+            Record</button>
+    </div>
 </div>
-<div class="col-2">
-    <button class="btn btn-info m-1" (click)="getnewticket(empid)">Get New Record</button>   
-</div>
-        </div>
-    }
-   @if (role==='Employee'||role==='Admin Department Employee'||role==='Department Head') {
-    <div class="card">
-        <div class="card-heading bg-secondary text-white text-center">
-            Ticket Information
-            @if (role=='Employee') {
+
+
+<div class="col-12 " *ngIf="role === 'Employee'||role === 'Admin Department Employee'||role === 'Department Head'">
+    <div class="card  mt-5 mx-5" id="tblEmployee">
+        <div class="card-header" style="background-color: #9526a9;">
+            <h5 class="text-white"><strong>Ticket Information </strong>
+                <div *ngIf="role === 'Employee'">
+                    <!-- <button type="button " class="btn btn-outline-light float-end" (click)="showModel()"><i
+                            class="fa fa-plus"></i>
+                        <strong> Create New Ticket</strong></button> -->
+                        
             <button class="btn addbtn btn-info text-white text-end" data-bs-toggle="modal" data-bs-target="#ticketform" (click)="ShowSavebtn()">Add New Ticket</button>
-        }
+
+                </div>
+            </h5>
         </div>
-    <div class="row">
-        @if (role=='Employee') {
-        <div class="col-12">
-            <table class="table table-bordered">
+        <div class="card-body">
+            <table class="table table-srtipped table-bordered text-center">
                 <thead>
                     <tr>
-                    <th>Create Date</th>
-                    <th>Expected End Date</th>
-                    @if (ticketList && ticketList.length>0 && ticketList[0].deptName) {
-                    <th>Department</th>
-                }
-                    <th>State</th>
-                    <th>Ticket No</th>
-                    <th>Created Employee</th>
-                    <!-- @if (role == 'Admin Department Employee') { -->
-                    <th>Request Details</th>
-                <!-- } -->
-                    <th>Action</th>
-                </tr>
+                        <th>Sr No</th>
+                        <th>Created Employee</th>
+                        <th>Created Date</th>
+                        <th>Expected End Date</th>
+                        <th *ngIf="ticketList && ticketList.length > 0 && ticketList[0].deptName">Department</th>
+                        <th>State</th>
+                        <th>Ticket No</th>
+                        <th *ngIf="role === 'Admin Department Employee'">Request Detail</th>
+                        <th>Action</th>
+                    </tr>
                 </thead>
-                @if (ticketList && ticketList.length>0) {
-                <tbody>
-                    @for (ticket of ticketList; track ticket.ticketId) {
-                     <tr>
-                        <td>{{ticket.createdDate|date}}</td>
-                        <td>{{ticket.expectedEndDate|date}}</td>
-                        @if (ticket.deptName) {
-                        <td>{{ticket.deptName}}</td>
-                    }
-                    <td>
-                        <!-- @if (role==='Department Head') { -->
-                        <ng-container>
-                            @if (ticket.state=='Un-Assigned') {
-                            <ng-container>{{ticket.state}}</ng-container>
-                        }
-                        <ng-template #assigned>{{ticket.assignedToEmployee}}</ng-template>
-                        @if (ticket.state=='Un-Assigned') {
-                            <button  class="btn btn-success" (click)="assignTicket(ticket.ticketId)" (click)="showassignform()">Assign</button>
-                        }
-                        </ng-container>
-                    <!-- } -->
-                    @if (role=='Employee'||role=='Admin Department Employee') {
-                        <ng-container >{{ticket.state}}</ng-container>
-                    }
-                    </td>
-                        <td>{{ticket.ticketNo}}</td>
-                        <td>{{ticket.createdByEmployee||ticket.employeeName}}</td>
-                        <!-- @if (role==='Admin Department Employee') { -->
-                        <td>{{ticket.requesDetails}}</td>
-                    <!-- } -->
-                        <td>
-                            <!-- @if (role==='Admin Department Employee') { -->
-                                <div>
-                                @if (ticket.state=='Assigned') {
-                            <button class="btn btn-success" (click)="startTicket(ticket.ticketId)">Start Ticket</button>
-                        }
-                        @if (ticket.state=='In-Progress') {
-                            <button class="btn btn-danger" (click)="closeticket(ticket.ticketId)">Close Ticket</button>
-                        }
-                    </div>
-                        <!-- } -->
-                         @if (role=='Employee'||role=='Department Head') {
-                            <i class="fa-solid fa-trash bg-danger m-1 text-white p-2" (click)="onDelete(ticket)"></i>
-                        }
+                <tbody *ngIf="ticketList && ticketList.length > 0; else noRecords">
+                    @for(tick of ticketList;track tick.ticketId;let index= $index){
+                    <tr>
+                        <td>{{index+1}}</td>
+                        <td>{{tick.createdByEmployee||tick.employeeName}}</td>
+                        <td>{{tick.createdDate |date: 'dd-MM-yy'}}</td>
+                        <td>{{tick.expectedEndDate |date: 'dd-MM-yy'}}</td>
+                        <td *ngIf="tick.deptName">{{ tick.deptName }}</td>
+                        <td> 
+                            <ng-container *ngIf="role === 'Department Head'">
+                                <ng-container *ngIf="tick.state === 'Un-Assigned'; else assigned">{{ tick.state }}</ng-container>
+                                <ng-template #assigned>{{ tick.assignedToEmployee }}</ng-template>&nbsp;
+                                <button *ngIf="tick.state === 'Un-Assigned'" class="btn btn-success" (click)="assignTicket(tick.ticketId)" data-bs-toggle="modal" data-bs-target="#assignform">Assign</button>
+                            </ng-container>                            
+                            <ng-container *ngIf="role === 'Employee'||role === 'Admin Department Employee'">
+                                {{ tick.state }}
+                            </ng-container>
                         </td>
-                     </tr>
+                        <td>{{tick.ticketNo}}</td>
+                        <td *ngIf="role === 'Admin Department Employee'">{{tick.requestDetails}}</td>
+                        <td>
+                            <div class="row ">
+                                <div *ngIf="role === 'Admin Department Employee'">
+                                    <div class="col-12 admin_button_start_close" *ngIf="tick.state === 'Assigned'">
+                                        <button class="btn btn-success " (click)="startTicket(tick.ticketId)">Start Ticket</button>
+                                    </div>
+                                    <div class="col-12 admin_button_start_close" *ngIf="tick.state === 'In-Progress'">
+                                        <button class="btn btn-danger"  (click)="closeticket(tick.ticketId)">Close Ticket</button>
+                                    </div>
+                                </div>
+                                <div class="col-12" *ngIf="role === 'Employee'||role==='Department Head'">
+                                    <button class="btn btn-danger" (click)="onDelete(tick)"><i
+                                            class="fa-solid fa-trash"></i></button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
                     }
                 </tbody>
-            }
             </table>
             <ng-template #noRecords>
                 <tr>
@@ -97,114 +89,102 @@
                 </tr>
             </ng-template>
         </div>
-    }
     </div>
 </div>
-}
-
-
 
 <div class="modal" id="ticketform">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-header bg-secondary text-white text-center">
-            <strong>Add Ticket</strong>
-            <i class="fa-regular fa-circle-xmark rounded bg-danger text-white close" data-bs-dismiss="modal"></i>
-        </div>
-        <div class="modal-body">
-<form #form="ngForm">
-    <div class="row">
-        <!-- <div class="col-12">
-            <label for="">Employee Name</label><br>
-            <select class="form-control" name="emp" [(ngModel)]="createticketobj.employeeId">
-            <option value="0" selected>Select Employee</option>
-            @for (emp of empList; track $index) {
-            <option [value]="emp.employeeId">{{emp.employeeName}}</option>
-        }
-            </select>
-        </div> -->
-        <div class="col-12">
-            <label for="">Saverity</label>
-           <select class="form-control" name="saverity" [(ngModel)]="createticketobj.severity">
-          <option value="0" selected>Select Saverity</option>
-          <option>Low</option>
-          <option>Medium</option>
-          <option>High</option>
-           </select>
-        </div>
-            <div class="col-12">
-                <label for="">Department</label>
-                <select class="form-control" name="dept" [(ngModel)]="createticketobj.deptId">
-                    <option value="0" selected>Select Department</option>
-                   @for (dept of deptList; track $index) {
-                    <option [value]="dept.deptId">{{dept.deptName}}</option>
-                   }
-                </select>
+            <!-- Modal Header -->
+            <div class="modal-header" style="background-color: #9526a9;">
+                <h4 class="modal-title text-white">Create New Ticket</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closeModel()"></button>
             </div>
-            <!-- <div class="col-12">
-                <label for="">State</label>
-                <input type="text" class="form-control" name="state" #state="ngModel" [(ngModel)]="createticketobj.state" required>
-                @if (state.touched||state.dirty) {
-                    <div class="text-danger">
-                        @if (state.errors) {
-                            <span>Enter State</span>
-                        }
-                    </div>
-                }
-            </div> -->
-            <div class="col-12">
-                <label for="">RequestDetails</label>
-                <input type="text" class="form-control" name="reqdetail" #reqdetail="ngModel" [(ngModel)]="createticketobj.requestDetails" required>
-                @if (reqdetail.touched||reqdetail.dirty) {
-                    <div class="text-danger">
-                        @if (reqdetail.errors) {
-                            <span>Enter Request Details</span>
-                        }
-                    </div>
-                }
-            </div>
-            
-    </div>
-</form>
-</div>
-<div class="modal-footer">
-    <div class="col-12">
-        @if (savebtn==true) {
-        <button class="btn btn-success m-1" (click)="createTicket()">CreateTicket</button>
-    }
-        <button class="btn btn-danger" (click)="reset()">Reset</button>
-    </div>
-</div>
-</div>
-</div>
-</div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        
+                        <div class="col-4">
+                            <label>Department Name :</label>
+                            <select class="form-select" [(ngModel)]="createticketobj.deptId">
+                                <option value="0" selected>Select Department</option>
+                                <option *ngFor="let dept of deptList" [value]="dept.deptId">
+                                    {{dept.deptName}}</option>
+                            </select>
+                        </div>
+                        <div class="col-4">
+                            <label>Severity:</label>
+                            <select class="form-select" [(ngModel)]="createticketobj.severity">
+                                <option value="0" selected>Select Severity</option>
+                                <option>Low</option>
+                                <option>Medium</option>
+                                <option>High</option>
+                            </select>
 
-<div class="modal" id="assignform">
-<div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-header bg-secondary text-white">
-            Assign Ticket
-            <i class="fa-regular fa-circle-xmark rounded bg-danger text-white close" data-bs-dismiss="modal"></i>
-        </div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-12">
-                <label for="">Assign To</label><br>
-                <select name="assignto" [(ngModel)]="assigntickobj.assignedTo">
-                <option value="0" selected>Select Employee</option>
-                @for (emp of empList; track $index) {
-                    <!-- <ng-container> -->
-               <option  [value]="emp.employeeId">{{emp.employeeName}}</option>
-                }
-            <!-- </ng-container> -->
-                </select>
+                        </div>
+                        <div class="col-4">
+                            <label>Request Details:</label>
+                            <input type="text" placeholder="Enter Request Details" class="form-control"
+                                name="requestDetails" #requestDetails="ngModel" required
+                                [(ngModel)]="createticketobj.requestDetails">
+                            <div class="text-danger" *ngIf="requestDetails.touched || requestDetails.dirty">
+                                <span *ngIf="requestDetails.errors?.['required']">Request Details is
+                                    required</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-success" (click)="assignreq()">Assign</button>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <div class="col-3 ">
+                     <button class="btn btn-success" (click)="createTicket()"><i class="fa fa-save"></i> Create
+                        Ticket</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-danger" (click)="closeModel()"><i class="fa fa-close"></i>Close</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-</div>
+<div class="modal" id="assignform">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header" style="background-color: #9526a9;">
+                <h4 class="modal-title text-white">Assign Ticket</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                    (click)="closeModelAssignForm()"></button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-4">
+                            <label>Assign To:</label>
+                            <select class="form-select" [(ngModel)]="assigntickobj.assignedTo">
+                                <option value="0" selected>Select Employee</option>
+                                <ng-container *ngFor="let emp of empList">
+                                    <option *ngIf="emp.role === 'Admin Department Employee'" [value]="emp.employeeId">
+                                        {{emp.employeeName}}
+                                    </option>
+                                </ng-container>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="col-3 ">
+                    <button class="btn btn-success" (click)="assignreq()"><i class="fa fa-save"></i> Assign</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-danger" (click)="closeModelAssignForm()"><i
+                            class="fa fa-close"></i>Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

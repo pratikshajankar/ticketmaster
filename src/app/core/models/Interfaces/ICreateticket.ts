@@ -11,7 +11,7 @@ export interface ITicket{
     "assignedToEmployee": string;
     "completedDate": null;
     "employeeName":string;
-    "requesDetails":string;
+    "requestDetails":string;
 }
 
 export interface IEmpDept{
