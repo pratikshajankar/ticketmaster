@@ -1,10 +1,10 @@
 <div class="row mt-5 justify-content-end" *ngIf="role === 'Department Head'">
-    <div class="col-1 ">
-      <button class="btn text-white" style="background-color: #9526a9;" (click)="getalltickdepthead(empid)">Get All
+    <div class="col-2 ">
+      <button class="btn text-white bg-info"  (click)="getalltickdepthead(empid)">Get All
             Record</button>
     </div>
     <div class="col-2">
-        <button class="btn text-white" style="background-color: #9526a9;" (click)="getnewticket(empid)">Get New
+        <button class="btn text-white bg-info"  (click)="getnewticket(empid)">Get New
             Record</button>
     </div>
 </div>
@@ -12,17 +12,14 @@
 
 <div class="col-12 " *ngIf="role === 'Employee'||role === 'Admin Department Employee'||role === 'Department Head'">
     <div class="card  mt-5 mx-5" id="tblEmployee">
-        <div class="card-header" style="background-color: #9526a9;">
-            <h5 class="text-white"><strong>Ticket Information </strong>
+        <div class="card-header bg-secondary">
+            <h5 class="text-white"><strong>Ticket Information </strong></h5>
                 <div *ngIf="role === 'Employee'">
-                    <!-- <button type="button " class="btn btn-outline-light float-end" (click)="showModel()"><i
-                            class="fa fa-plus"></i>
-                        <strong> Create New Ticket</strong></button> -->
                         
             <button class="btn addbtn btn-info text-white text-end" data-bs-toggle="modal" data-bs-target="#ticketform" (click)="ShowSavebtn()">Add New Ticket</button>
 
                 </div>
-            </h5>
+            
         </div>
         <div class="card-body">
             <table class="table table-srtipped table-bordered text-center">
@@ -96,7 +93,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <!-- Modal Header -->
-            <div class="modal-header" style="background-color: #9526a9;">
+            <div class="modal-header bg-info">
                 <h4 class="modal-title text-white">Create New Ticket</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closeModel()"></button>
             </div>
@@ -143,7 +140,7 @@
                         Ticket</button>
                 </div>
                 <div class="col-3">
-                    <button class="btn btn-danger" (click)="closeModel()"><i class="fa fa-close"></i>Close</button>
+                    <button class="btn btn-danger" (click)="reset()">Reset</button>
                 </div>
             </div>
         </div>
@@ -180,10 +177,10 @@
                 <div class="col-3 ">
                     <button class="btn btn-success" (click)="assignreq()"><i class="fa fa-save"></i> Assign</button>
                 </div>
-                <div class="col-3">
+                <!-- <div class="col-3">
                     <button class="btn btn-danger" (click)="closeModelAssignForm()"><i
                             class="fa fa-close"></i>Close</button>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
