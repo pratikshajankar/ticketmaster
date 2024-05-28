@@ -26,7 +26,7 @@ export class CreateticketComponent implements OnInit {
   Userdata: any;
   empid: number = 0;
   ticketDeptId: number = 0;
-
+  ticketId: number = 0;
 
   savebtn: boolean = false;
   updatebtn: boolean = false;
@@ -182,6 +182,7 @@ export class CreateticketComponent implements OnInit {
   }
 
   startTicket(ticketId: any) {
+  
     this.assignTicket(ticketId);
     this.createticketsrv.StartTicket(ticketId).subscribe((res: any) => {
       if (res.result) {
@@ -195,6 +196,7 @@ export class CreateticketComponent implements OnInit {
   }
   
   closeticket(ticketId: any) {
+  
     this.assignTicket(ticketId);
     this.createticketsrv.CloseTicket(ticketId).subscribe((res: any) => {
       if (res.result) {
